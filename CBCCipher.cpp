@@ -3,8 +3,10 @@
  *  \author Peter C. Chapin <pchapin@vtc.edu>
  */
 
-#include <cstring>
-#include "CBCCipher.hpp"
+module cppCrypto;
+
+import <cstring>;
+import <memory>;
 
 using namespace std;
 

@@ -7,6 +7,9 @@
 *.o
 *.obj
 
+# Precompiled module files
+*.pcm
+
 # Precompiled Headers
 *.gch
 *.pch

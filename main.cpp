@@ -8,8 +8,8 @@
 #include <iostream>
 #include <fstream>
 #include <memory>
-#include "BlockCipher.hpp"
-#include "CBCCipher.hpp"
+
+import cppCrypto;
 
 using namespace std;
 

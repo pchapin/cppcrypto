@@ -5,7 +5,8 @@
 
 module cppCrypto;
 
-#include <cstring>
+import <cstring>;
+import <string>;
 
 using namespace std;
 

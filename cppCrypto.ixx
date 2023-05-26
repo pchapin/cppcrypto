@@ -7,17 +7,11 @@
  * That is handled by the Makefile.
  */
 
-// This is the global module fragment. It can only contain preprocessor directives.
-module;
-
-#include <stdexcept>
-
-// In theory, we should be able to import the header unit, but that doesn't seem to work.
-// Note: I believe the import of the header unit goes below the export module declaration.
-// import <stdexcept>;
-
 // This is the module declaration.
 export module cppCrypto;
+
+import <memory>;
+import <stdexcept>;
 
 export class BlockCipher {
 public:
