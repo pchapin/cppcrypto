@@ -1,0 +1,12 @@
+================================================================================================
+From: Peter Chapin <PChapin@vtc.vsc.edu
+To: CIS-3012 <cis-3012@vtc.vsc.edu>
+Subject: A super secret test message.
+
+This is a super secret message intended for only authorized individuals. Notice that with ECB
+encryption the same plain text encrypts to the same cipher text. Thus the line of '=' at the
+top of this message shows up as 12 identical blocks of cipher text. Furthermore an attacker
+who knows something of the message may be able to predict the content of certain headers or
+other fields. This gives the attacker a sample of plain text along with the corresponding ciper
+text. Thus the attacker can mount a "known plain text attack" to find the key.
+
