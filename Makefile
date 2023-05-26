@@ -29,7 +29,7 @@ $(EXECUTABLE):	$(OBJECTS)
 ###################
 
 BlockCipher.o:	BlockCipher.cpp cppCrypto.pcm
-	clang++ -std=c++20 -Wall -c -O BlockCipher.cpp -fmodule-file=cppCrypto=cppCrypto.pcm -o BlockCipher.o
+	clang++ -std=c++20 -Wall -c -O BlockCipher.cpp -fmodule-file=cppCrypto.pcm -o BlockCipher.o
 
 CBCCipher.o:	CBCCipher.cpp cppCrypto.pcm 
 
