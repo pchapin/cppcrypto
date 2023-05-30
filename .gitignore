@@ -9,6 +9,7 @@
 
 # Precompiled module files
 *.pcm
+gcm.cache
 
 # Precompiled Headers
 *.gch

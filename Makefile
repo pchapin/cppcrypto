@@ -2,9 +2,9 @@
 # Makefile for the cppCrypto project.
 #
 
-CXX=clang++
-CXXFLAGS=-std=c++20 -Wall -c -O
-LINK=clang++
+CXX=g++
+CXXFLAGS=-c -std=c++20 -fmodules-ts -Wall -O
+LINK=g++
 LINKFLAGS=
 SOURCES=BlockCipher.cpp \
 	CBCCipher.cpp \
@@ -21,45 +21,33 @@ all:	main
 $(EXECUTABLE):	$(OBJECTS)
 	$(CXX) $(OBJECTS) $(LINKFLAGS) -o $@
 
+
 # File Dependencies
 ###################
 
-# First, it is necessary to compile the library header units using commands such as:
+# First, if any header units are used it is necessary to compile them using commands such as:
 #
-# clang++ -std=c++20 -x c++-system-header --precompile cstring -o cstring.pcm
+#     g++ -std=c++20 -fmodules-ts -x c++-system-header cstring 
 #
-# I could no doubt get 'make' to do this, but I just did it manually for now. The clang documentation
-# says this will be streamlined in the future. It is furtermore necessary to explicitly load the header
-# units when compiling code that depends on them. This is also supposed to work better in the future.
+# I could no doubt get 'make' to do this, but I do it manually for now.
 
-# Clang wants module interface files to use a .cppm extension. However, .ixx is normal for Microsoft.
-# Selecting a language of "c++-module" (with the -x option) forces clang to do the right thing here.
-cppCrypto.pcm:	cppCrypto.ixx
-	clang++ -std=c++20 -Wall -x c++-module cppCrypto.ixx \
-		-fmodule-file=memory.pcm    \
-		-fmodule-file=stdexcept.pcm \
-		--precompile -o cppCrypto.pcm
 
-BlockCipher.o:	BlockCipher.cpp cppCrypto.pcm
-	clang++ -std=c++20 -Wall -c -O BlockCipher.cpp \
-		-fmodule-file=cstring.pcm \
-		-fmodule-file=string.pcm \
-		-fmodule-file=cppCrypto.pcm \
-		-o BlockCipher.o
+# g++ wants module interface files to use a .cppm extension. However, .ixx is normal for Microsoft.
+# Selecting a language of "c++" (with the -x option) forces g++ to do the right thing here.
+gcm.cache/cppCrypto.gcm:	cppCrypto.ixx
+	$(CXX) $(CXXFLAGS) -x c++ cppCrypto.ixx
 
-CBCCipher.o:	CBCCipher.cpp cppCrypto.pcm
-	clang++ -std=c++20 -Wall -c -O CBCCipher.cpp \
-		-fmodule-file=cstring.pcm \
-		-fmodule-file=memory.pcm \
-		-fmodule-file=cppCrypto.pcm \
-		-o CBCCipher.o
+BlockCipher.o:	BlockCipher.cpp gcm.cache/cppCrypto.gcm
+	$(CXX) $(CXXFLAGS) BlockCipher.cpp
 
-main.o:	main.cpp cppCrypto.pcm
-	clang++ -std=c++20 -Wall -c -O main.cpp \
-		-fmodule-file=cppCrypto.pcm \
-		-o main.o
+CBCCipher.o:	CBCCipher.cpp gcm.cache/cppCrypto.gcm
+	$(CXX) $(CXXFLAGS) CBCCipher.cpp
+
+main.o:	main.cpp gcm.cache/cppCrypto.gcm
+	$(CXX) $(CXXFLAGS) main.cpp
+
 
 # Additional Rules
 ##################
 clean:
-	rm -f *.bc *.o $(EXECUTABLE) *.s *.ll *~
+	rm -rf gcm.cache *.o $(EXECUTABLE) *~

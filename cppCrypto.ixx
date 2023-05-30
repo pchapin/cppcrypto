@@ -2,16 +2,19 @@
  *  \brief  The primary module interface unit for the cppCrypto module.
  *  \author Peter Chapin <chapinp@proton.me>
  *
- * The .ixx extension is required by Visual Studio. For clang and g++ it is necessary to
+ * The .ixx extension is required(?) by Visual Studio. For clang and g++ it is necessary to
  * explicitly inform the compiler that this file is C++ with the -x c++ command line option.
  * That is handled by the Makefile.
  */
 
+module;
+
+#include <memory>
+#include <stdexcept>
+#include <string>
+
 // This is the module declaration.
 export module cppCrypto;
-
-import <memory>;
-import <stdexcept>;
 
 export class BlockCipher {
 public:

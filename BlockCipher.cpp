@@ -3,10 +3,11 @@
  *  \author Peter Chapin <chapinp@proton.me>
  */
 
-module cppCrypto;
+module;
 
-import <cstring>;
-import <string>;
+#include <string>
+
+module cppCrypto;
 
 using namespace std;
 

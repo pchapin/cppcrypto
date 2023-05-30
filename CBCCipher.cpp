@@ -3,10 +3,12 @@
  *  \author Peter C. Chapin <pchapin@vtc.edu>
  */
 
-module cppCrypto;
+module;
 
-import <cstring>;
-import <memory>;
+#include <cstring>
+#include <memory>
+
+module cppCrypto;
 
 using namespace std;
 
