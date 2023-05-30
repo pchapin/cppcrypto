@@ -12,6 +12,7 @@
 import cppCrypto;
 
 using namespace std;
+using namespace cppCrypto_0_0_0;
 
 enum class Direction { Encrypt, Decrypt };
 
@@ -56,7 +57,7 @@ void cipher_file(
 }
 
 
-int main( int argc, char *argv[] )
+int Main( int argc, char *argv[] )
 {
     Direction desired_direction;
 
@@ -99,10 +100,26 @@ int main( int argc, char *argv[] )
     // Set up the engine.
     BlowfishCipher blowfish_engine( reinterpret_cast<const BlockCipher::octet_type *>( passphrase ),
                                     adjusted_length );
-
     const BlockCipher::octet_type iv[] = { 0, 1, 2, 3, 4, 5, 6, 7 };  // Arbitrary and fixed for now.
     CBCCipher cipher_engine( iv, blowfish_engine );
 
+    // Encrypt/Decrypt the file.
     cipher_file( argv[3], argv[4], cipher_engine, desired_direction );
+    
     return EXIT_SUCCESS;
+}
+
+
+int main( int argc, char *argv[] )
+{
+    try {
+        return Main( argc, argv );
+    }
+    catch( const BlockCipher::NotImplemented &ex ) {
+        cerr << "Unhandled BlockCipher::NotImplemented exception: " << ex.what( ) << endl;
+    }
+    catch( ... ) {
+        cerr << "Unhandled exception!" << endl;
+    }
+    return EXIT_FAILURE;
 }

@@ -5,95 +5,107 @@
 
 module;
 
+#include <iostream>  // Needed only for debugging messages (below).
 #include <string>
 
 module cppCrypto;
 
 using namespace std;
 
-// Methods of BlowfishCipher
-// ------------------------
+namespace cppCrypto_0_0_0 {
 
-BlowfishCipher::BlowfishCipher( const octet_type *key_material, int key_size )
-{
-    throw NotImplemented( "BlowfishCipher::BlowfishCipher" );
-}
+    // Methods of BlowfishCipher
+    // ------------------------
 
-
-size_t BlowfishCipher::block_size( ) const
-{
-    return 8;  // Always 64 bits.
-}
-
-
-void BlowfishCipher::encrypt( octet_type *block )
-{
-    throw NotImplemented( "BlowfishCipher::encrypt" );
-}
+    BlowfishCipher::BlowfishCipher( const octet_type *key_material, int key_size )
+    {
+        // g++ 11.3 crashes with a segmentation fault when 'throw_me' is constructed.
+        // I believe this might be a problem with the compiler mis-compiling the module.
+        // Note that NotImplemented is a nested class with an inline constructor.
+        cout << "About to construct an exception!" << endl;
+        NotImplemented throw_me{ "BlowfishCipher::BlowfishCipher" };
+    
+        cout << "About to throw an exception!" << endl;
+        throw throw_me;
+    }
 
 
-void BlowfishCipher::decrypt( octet_type *block )
-{
-    throw NotImplemented( "BlowfishCipher::encrypt" );
-}
+    size_t BlowfishCipher::block_size( ) const
+    {
+        return 8;  // Always 64 bits.
+    }
 
 
-// Methods of CastCipher
-// ------------------------
-
-size_t CastCipher::block_size( ) const
-{
-    return 8;  // Always 64 bits.
-}
+    void BlowfishCipher::encrypt( octet_type *block )
+    {
+        throw NotImplemented( "BlowfishCipher::encrypt" );
+    }
 
 
-void CastCipher::encrypt( octet_type *block )
-{
-    throw NotImplemented( "CastCipher::encrypt" );
-}
+    void BlowfishCipher::decrypt( octet_type *block )
+    {
+        throw NotImplemented( "BlowfishCipher::encrypt" );
+    }
 
 
-void CastCipher::decrypt( octet_type *block )
-{
-    throw NotImplemented( "CastCipher::decrypt" );
-}
+    // Methods of CastCipher
+    // ------------------------
+
+    size_t CastCipher::block_size( ) const
+    {
+        return 8;  // Always 64 bits.
+    }
 
 
-// Methods of DESCipher
-// --------------------
-
-size_t DESCipher::block_size( ) const
-{
-    return 8;   // Always 64 bits.
-}
-
-void DESCipher::encrypt( octet_type *block )
-{
-    throw NotImplemented( "DESCipher::encrypt" );
-}
+    void CastCipher::encrypt( octet_type *block )
+    {
+        throw NotImplemented( "CastCipher::encrypt" );
+    }
 
 
-void DESCipher::decrypt( octet_type *block )
-{
-    throw NotImplemented( "DESCipher::decrypt" );
-}
+    void CastCipher::decrypt( octet_type *block )
+    {
+        throw NotImplemented( "CastCipher::decrypt" );
+    }
 
 
-// Methods of AESCipher
-// --------------------
+    // Methods of DESCipher
+    // --------------------
+    
+    size_t DESCipher::block_size( ) const
+    {
+        return 8;   // Always 64 bits.
+    }
 
-size_t AESCipher::block_size( ) const
-{
-    return 16;   // Always 128 bits.
-}
-
-void AESCipher::encrypt( octet_type *block )
-{
-    throw NotImplemented( "AESCipher::encrypt" );
-}
+    void DESCipher::encrypt( octet_type *block )
+    {
+        throw NotImplemented( "DESCipher::encrypt" );
+    }
 
 
-void AESCipher::decrypt( octet_type *block )
-{
-    throw NotImplemented( "AESCipher::decrypt" );
+    void DESCipher::decrypt( octet_type *block )
+    {
+        throw NotImplemented( "DESCipher::decrypt" );
+    }
+
+
+    // Methods of AESCipher
+    // --------------------
+
+    size_t AESCipher::block_size( ) const
+    {
+        return 16;   // Always 128 bits.
+    }
+
+    void AESCipher::encrypt( octet_type *block )
+    {
+        throw NotImplemented( "AESCipher::encrypt" );
+    }
+
+
+    void AESCipher::decrypt( octet_type *block )
+    {
+        throw NotImplemented( "AESCipher::decrypt" );
+    }
+
 }

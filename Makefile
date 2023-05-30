@@ -18,8 +18,8 @@ all:	main
 %.o:	%.cpp
 	$(CXX) $(CXXFLAGS) $< -o $@
 
-$(EXECUTABLE):	$(OBJECTS)
-	$(CXX) $(OBJECTS) $(LINKFLAGS) -o $@
+$(EXECUTABLE):	$(OBJECTS) cppCrypto.o
+	$(CXX) $(OBJECTS) cppCrypto.o $(LINKFLAGS) -o $@
 
 
 # File Dependencies
@@ -38,13 +38,10 @@ gcm.cache/cppCrypto.gcm:	cppCrypto.ixx
 	$(CXX) $(CXXFLAGS) -x c++ cppCrypto.ixx
 
 BlockCipher.o:	BlockCipher.cpp gcm.cache/cppCrypto.gcm
-	$(CXX) $(CXXFLAGS) BlockCipher.cpp
 
 CBCCipher.o:	CBCCipher.cpp gcm.cache/cppCrypto.gcm
-	$(CXX) $(CXXFLAGS) CBCCipher.cpp
 
 main.o:	main.cpp gcm.cache/cppCrypto.gcm
-	$(CXX) $(CXXFLAGS) main.cpp
 
 
 # Additional Rules

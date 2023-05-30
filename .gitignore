@@ -34,3 +34,5 @@ gcm.cache
 *.exe
 *.out
 *.app
+main
+
