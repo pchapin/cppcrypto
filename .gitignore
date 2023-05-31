@@ -36,3 +36,7 @@ gcm.cache
 *.app
 main
 
+# Visual Studio artifacts
+*.user
+.vs
+x64

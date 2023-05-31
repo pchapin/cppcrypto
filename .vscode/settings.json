@@ -5,5 +5,7 @@
     "rewrap.wrappingColumn": 96,
     "rewrap.reformat": false,
     "C_Cpp.default.cppStandard": "c++20",
-    "C_Cpp.default.cStandard": "c99"
+    "cSpell.words": [
+        "Cygwin"
+    ]
 }
