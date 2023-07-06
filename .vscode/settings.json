@@ -7,5 +7,6 @@
     "C_Cpp.default.cppStandard": "c++20",
     "cSpell.words": [
         "Cygwin"
-    ]
+    ],
+    "C_Cpp.default.compilerPath": "/usr/bin/g++"
 }

@@ -1,6 +1,6 @@
 /*! \file   BlockCipher.cpp
  *  \brief  A class hierarchy for doing block encryption.
- *  \author Peter Chapin <chapinp@proton.me>
+ *  \author Peter Chapin <spicacality@kelseymountain.org>
  */
 
 module;

@@ -19,4 +19,4 @@ can't locate the module information in this configuration and produces many spur
 Intellisense errors.
 
 Peter Chapin  
-chapinp@proton.me  
+spicacality@kelseymountain.org  

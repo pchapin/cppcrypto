@@ -1,6 +1,6 @@
 /*! \file   main.cpp
  *  \brief  A demonstration program to illustrate the BlockCipher hierarchy.
- *  \author Peter C. Chapin <pchapin@vtc.edu>
+ *  \author Peter Chapin <spicacality@kelseymountain.org>
  */
 
 #include <cstdlib>

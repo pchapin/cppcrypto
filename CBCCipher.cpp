@@ -1,6 +1,6 @@
 /*! \file   CBCCipher.cpp
  *  \brief  A class that wraps a block cipher in CBC mode.
- *  \author Peter C. Chapin <pchapin@vtc.edu>
+ *  \author Peter Chapin <spicacality@kelseymountain.org>
  */
 
 module;

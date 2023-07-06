@@ -1,6 +1,6 @@
 /*! \file   cppCrypto.ixx
  *  \brief  The primary module interface unit for the cppCrypto module.
- *  \author Peter Chapin <chapinp@proton.me>
+ *  \author Peter Chapin <spicacality@kelseymountain.org>
  *
  * The .ixx extension is required(?) by Visual Studio. For clang and g++ it is necessary to
  * explicitly inform the compiler that this file is C++ with the -x c++ command line option.
