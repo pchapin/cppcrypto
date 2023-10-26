@@ -7,8 +7,6 @@
  * That is handled by the Makefile.
  */
 
-module;
-
 #include <memory>
 #include <stdexcept>
 #include <string>

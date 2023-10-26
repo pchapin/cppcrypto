@@ -3,7 +3,7 @@
 #
 
 CXX=g++
-CXXFLAGS=-c -std=c++20 -fmodules-ts -Wall -O
+CXXFLAGS=-c -std=c++20 -fmodules-ts -Wall
 LINK=g++
 LINKFLAGS=
 SOURCES=BlockCipher.cpp \
@@ -32,8 +32,9 @@ $(EXECUTABLE):	$(OBJECTS) cppCrypto.o
 # I could no doubt get 'make' to do this, but I do it manually for now.
 
 
-# g++ wants module interface files to use a .cppm extension. However, .ixx is normal for Microsoft.
-# Selecting a language of "c++" (with the -x option) forces g++ to do the right thing here.
+# g++ wants module interface files to use a .cppm extension. However, .ixx is normal for
+# Microsoft. Selecting a language of "c++" (with the -x option) forces g++ to do the right thing
+# here.
 gcm.cache/cppCrypto.gcm:	cppCrypto.ixx
 	$(CXX) $(CXXFLAGS) -x c++ cppCrypto.ixx
 

@@ -3,8 +3,6 @@
  *  \author Peter Chapin <spicacality@kelseymountain.org>
  */
 
-module;
-
 #include <iostream>  // Needed only for debugging messages (below).
 #include <string>
 
