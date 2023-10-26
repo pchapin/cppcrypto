@@ -29,13 +29,23 @@ $(EXECUTABLE):	$(OBJECTS) cppCrypto.o
 #
 #     g++ -std=c++20 -fmodules-ts -x c++-system-header cstring 
 #
-# I could no doubt get 'make' to do this, but I do it manually for now.
+# Right now I'm doing this when the module interface is built, but that is a hack (it will redo
+# the work every time the module interface is modified). A better solution could be implemented,
+# but honestly, why doesn't the compiler vendor provide these precompiled header unit files for
+# the library headers??
 
 
 # g++ wants module interface files to use a .cppm extension. However, .ixx is normal for
 # Microsoft. Selecting a language of "c++" (with the -x option) forces g++ to do the right thing
 # here.
 gcm.cache/cppCrypto.gcm:	cppCrypto.ixx
+	g++ -std=c++20 -fmodules-ts -x c++-system-header cstdlib
+	g++ -std=c++20 -fmodules-ts -x c++-system-header cstring
+	g++ -std=c++20 -fmodules-ts -x c++-system-header fstream
+	g++ -std=c++20 -fmodules-ts -x c++-system-header iostream
+	g++ -std=c++20 -fmodules-ts -x c++-system-header memory
+	g++ -std=c++20 -fmodules-ts -x c++-system-header stdexcept
+	g++ -std=c++20 -fmodules-ts -x c++-system-header string
 	$(CXX) $(CXXFLAGS) -x c++ cppCrypto.ixx
 
 BlockCipher.o:	BlockCipher.cpp gcm.cache/cppCrypto.gcm
