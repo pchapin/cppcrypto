@@ -3,11 +3,11 @@
  *  \author Peter Chapin <spicacality@kelseymountain.org>
  */
 
-#include <cstdlib>
-#include <cstring>
-#include <iostream>
-#include <fstream>
-#include <memory>
+import <cstdlib>;
+import <cstring>;
+import <iostream>;
+import <fstream>;
+import <memory>;
 
 import cppCrypto;
 

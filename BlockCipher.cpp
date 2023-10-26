@@ -3,10 +3,10 @@
  *  \author Peter Chapin <spicacality@kelseymountain.org>
  */
 
-#include <iostream>  // Needed only for debugging messages (below).
-#include <string>
-
 module cppCrypto;
+
+import <iostream>;  // Needed only for debugging messages (below).
+import <string>;
 
 using namespace std;
 

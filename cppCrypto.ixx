@@ -7,12 +7,12 @@
  * That is handled by the Makefile.
  */
 
-#include <memory>
-#include <stdexcept>
-#include <string>
-
 // This is the module declaration.
 export module cppCrypto;
+
+import <memory>;
+import <stdexcept>;
+import <string>;
 
 export namespace cppCrypto_0_0_0 {
 
