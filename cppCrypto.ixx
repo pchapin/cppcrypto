@@ -21,17 +21,17 @@ export namespace cppCrypto_0_0_0 {
         //! A class to throw when an unimplemented method is called.
         class NotImplemented : public std::logic_error {
         public:
-            NotImplemented( const std::string &message );
+            explicit NotImplemented( const std::string &message );
         };
 
         //! A type for representing raw data.
         typedef unsigned char octet_type;
 
         //! A virtual destructor to ensure that objects of a subtype are properly cleaned up.
-        virtual ~BlockCipher( );
+        virtual ~BlockCipher( ) = default;
 
         //! Returns the number of octets in a block.
-        virtual std::size_t block_size( ) const = 0;
+        [[nodiscard]] virtual std::size_t block_size( ) const = 0;
 
         //! Encrypts the given block.
         /*!
@@ -56,8 +56,11 @@ export namespace cppCrypto_0_0_0 {
         BlowfishCipher( const octet_type *key_material, int key_size );
 
         virtual std::size_t block_size( ) const override;
+
         virtual void encrypt( octet_type *block ) override;
+
         virtual void decrypt( octet_type *block ) override;
+
     private:
         // ...
     };
@@ -66,8 +69,11 @@ export namespace cppCrypto_0_0_0 {
     class CastCipher : public BlockCipher {
     public:
         virtual std::size_t block_size( ) const override;
+
         virtual void encrypt( octet_type *block ) override;
+
         virtual void decrypt( octet_type *block ) override;
+
     private:
         // ...
     };
@@ -76,8 +82,11 @@ export namespace cppCrypto_0_0_0 {
     class DESCipher : public BlockCipher {
     public:
         virtual std::size_t block_size( ) const override;
+
         virtual void encrypt( octet_type *block ) override;
+
         virtual void decrypt( octet_type *block ) override;
+
     private:
         // ...
     };
@@ -86,8 +95,11 @@ export namespace cppCrypto_0_0_0 {
     class AESCipher : public BlockCipher {
     public:
         virtual std::size_t block_size( ) const override;
+
         virtual void encrypt( octet_type *block ) override;
+
         virtual void decrypt( octet_type *block ) override;
+
     private:
         // ...
     };
@@ -99,27 +111,24 @@ export namespace cppCrypto_0_0_0 {
 
         // For now, prohibit copying. This can be reviewed later.
         CBCCipher( const CBCCipher & ) = delete;
+
         CBCCipher &operator=( const CBCCipher & ) = delete;
 
         virtual std::size_t block_size( ) const override;
+
         virtual void encrypt( octet_type *block ) override;
+
         virtual void decrypt( octet_type *block ) override;
-        
+
     private:
         std::unique_ptr<octet_type[]> old_ciphertext;
         BlockCipher &underlying;
     };
 
-
     // Implementations of Inline Methods
     // ---------------------------------
 
     inline BlockCipher::NotImplemented::NotImplemented( const std::string &message ) :
-        std::logic_error( message )
-    { }
-
-
-    inline BlockCipher::~BlockCipher( )
-    { }
+            std::logic_error( message ) { }
 
 }

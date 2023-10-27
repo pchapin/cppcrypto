@@ -4,9 +4,9 @@ cppCrypto
 This project is a cryptographic library in C++2020. Although it is intended to be a useful
 library on its own terms, the real point of this project is to serve as a C++2020 demonstration.
 In particular, it uses C++2020 modules throughout (or it will, at least). This project's primary
-purpose is to be educational. 
+purpose is to be educational.
 
-Currently the project is only known to compile and execute properly using Microsoft's Visual C++
+Currently, the project is only known to compile and execute properly using Microsoft's Visual C++
 (via the Visual Studio solution/project files). It will compile with g++ 11.3 as ships with
 Ubuntu 22.04, but the resulting executable does not work. Furthermore, building this program is
 known to cause g++ 12.2 (as ships with Ubuntu 23.04) and g++ 13.1 to crash. I have not explored

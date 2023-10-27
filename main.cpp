@@ -14,13 +14,15 @@ import cppCrypto;
 using namespace std;
 using namespace cppCrypto_0_0_0;
 
-enum class Direction { Encrypt, Decrypt };
+enum class Direction {
+    Encrypt, Decrypt
+};
 
 void cipher_file(
-    const string &in_text,
-    const string &out_text,
-    BlockCipher  &cipher,
-    Direction     cipher_direction )
+        const string &in_text,
+        const string &out_text,
+        BlockCipher &cipher,
+        Direction cipher_direction )
 {
     ifstream input( in_text, ios::binary );
     if( !input ) {
@@ -36,15 +38,15 @@ void cipher_file(
 
     // Create a C style array dynamically with the required block size.
     size_t size = cipher.block_size( );
-    unique_ptr<BlockCipher::octet_type[]> buffer( new BlockCipher::octet_type[size] );
+    unique_ptr<BlockCipher::octet_type[]> buffer{ new BlockCipher::octet_type[size] };
     BlockCipher::octet_type *p = buffer.get( );
 
     // Keep reading the input until we get to the end-of-file.
     while( input ) {
         // Note that the read() and write() methods expect type char* which is a poor choice for
-        // representing binary data. Unfortunately converting from unsigned char* to char* needs
-        // the heavy handed reinterpret_cast.
-        input.read( reinterpret_cast<char*>( p ), size );
+        // representing binary data. Unfortunately, converting from unsigned char* to char* needs
+        // the heavy-handed reinterpret_cast.
+        input.read( reinterpret_cast<char *>( p ), size );
         if( input.gcount( ) == 0 ) break;
 
         if( cipher_direction == Direction::Encrypt )
@@ -52,7 +54,7 @@ void cipher_file(
         else
             cipher.decrypt( p );
 
-        output.write( reinterpret_cast<char*>( p ), size );
+        output.write( reinterpret_cast<char *>( p ), size );
     }
 }
 
@@ -87,7 +89,7 @@ int Main( int argc, char *argv[] )
         return EXIT_FAILURE;
     }
     // Round the length down to a multiple of 32 bits.
-    size_t adjusted_length = 4 * (passphrase_length/4);
+    size_t adjusted_length = 4 * ( passphrase_length / 4 );
     if( adjusted_length != passphrase_length ) {
         cerr << "Warning! Last "
              << passphrase_length - adjusted_length
@@ -105,7 +107,7 @@ int Main( int argc, char *argv[] )
 
     // Encrypt/Decrypt the file.
     cipher_file( argv[3], argv[4], cipher_engine, desired_direction );
-    
+
     return EXIT_SUCCESS;
 }
 

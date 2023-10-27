@@ -3,33 +3,28 @@
  *  \author Peter Chapin <spicacality@kelseymountain.org>
  */
 
-module;
-
-#include <cstring>
-#include <memory>
-
 module cppCrypto;
+
+import <cstring>;
+import <memory>;
 
 using namespace std;
 
 namespace cppCrypto_0_0_0 {
 
     CBCCipher::CBCCipher( const octet_type *iv, BlockCipher &cipher ) :
-        old_ciphertext( new octet_type[cipher.block_size()] ),
-        underlying( cipher )
-    {
-        memcpy( old_ciphertext.get( ), iv, underlying.block_size( ) );
+            old_ciphertext( new octet_type[cipher.block_size( )] ),
+            underlying( cipher ) {
+        memcpy( old_ciphertext.get( ), iv, underlying.block_size( ));
     }
 
 
-    size_t CBCCipher::block_size( ) const
-    {
+    size_t CBCCipher::block_size( ) const {
         return underlying.block_size( );
     }
 
 
-    void CBCCipher::encrypt( octet_type *block )
-    {
+    void CBCCipher::encrypt( octet_type *block ) {
         // XOR the old ciphertext into the plaintext.
         for( size_t i = 0; i < underlying.block_size( ); ++i ) {
             block[i] ^= old_ciphertext.get( )[i];
@@ -39,15 +34,14 @@ namespace cppCrypto_0_0_0 {
         underlying.encrypt( block );
 
         // Save the ciphertext for next time.
-        memcpy( old_ciphertext.get( ), block, underlying.block_size( ) );
+        memcpy( old_ciphertext.get( ), block, underlying.block_size( ));
     }
 
 
-    void CBCCipher::decrypt( octet_type *block )
-    {
+    void CBCCipher::decrypt( octet_type *block ) {
         // Save the ciphertext aside for later.
-        unique_ptr<octet_type []> temp( new octet_type[underlying.block_size()] );
-        memcpy( temp.get( ), block, underlying.block_size( ) );
+        unique_ptr < octet_type[] > temp{ new octet_type[underlying.block_size( )] };
+        memcpy( temp.get( ), block, underlying.block_size( ));
 
         // Use the underlying decryption engine to decrypt what we've got in place.
         underlying.decrypt( block );
@@ -58,7 +52,7 @@ namespace cppCrypto_0_0_0 {
         }
 
         // Copy the saved ciphertext for next time.
-        memcpy( old_ciphertext.get( ), temp.get( ), underlying.block_size( ) );
+        memcpy( old_ciphertext.get( ), temp.get( ), underlying.block_size( ));
     }
 
 }

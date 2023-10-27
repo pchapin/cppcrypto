@@ -8,5 +8,6 @@
     "cSpell.words": [
         "Cygwin"
     ],
-    "C_Cpp.default.compilerPath": "/usr/bin/g++"
+    "C_Cpp.default.compilerPath": "/usr/bin/g++",
+    "C_Cpp.default.cStandard": "c99"
 }
