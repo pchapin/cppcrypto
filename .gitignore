@@ -40,3 +40,4 @@ main
 *.user
 .vs
 x64
+ARM64
