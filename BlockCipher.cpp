@@ -5,16 +5,14 @@
 
 module cppCrypto;
 
-import <string>;
-
-using namespace std;
+import std;
 
 namespace cppCrypto_0_0_0 {
 
     // Methods of BlowfishCipher
     // ------------------------
 
-    BlowfishCipher::BlowfishCipher( const octet_type *key_material, int key_size )
+    BlowfishCipher::BlowfishCipher( const octet_type *key_material, std::size_t key_size )
     {
         throw NotImplemented( "BlowfishCipher::BlowfishCipher" );
     }

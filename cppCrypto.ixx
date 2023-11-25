@@ -10,9 +10,7 @@
 // This is the module declaration.
 export module cppCrypto;
 
-import <memory>;
-import <stdexcept>;
-import <string>;
+import std;
 
 export namespace cppCrypto_0_0_0 {
 
@@ -25,7 +23,7 @@ export namespace cppCrypto_0_0_0 {
         };
 
         //! A type for representing raw data.
-        typedef unsigned char octet_type;
+        using octet_type = unsigned char;
 
         //! A virtual destructor to ensure that objects of a subtype are properly cleaned up.
         virtual ~BlockCipher( ) = default;
@@ -53,7 +51,7 @@ export namespace cppCrypto_0_0_0 {
 
     class BlowfishCipher : public BlockCipher {
     public:
-        BlowfishCipher( const octet_type *key_material, int key_size );
+        BlowfishCipher( const octet_type *key_material, std::size_t key_size );
 
         virtual std::size_t block_size( ) const override;
 
